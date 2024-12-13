@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>tes kepuqian</title>
+    <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+            touch-action: manipulation;
+            -ms-touch-action: manipulation;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            width: 80%;
+            max-width: 350px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff6b81;
+        }
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        .button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .yes {
+            background-color: #ff6b81;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #e05667;
+        }
+        .no {
+            background-color: #ced6e0;
+            color: #555;
+        }
+        .no:hover {
+            background-color: #a4b0be;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            top: 100vh; /* Memulai dari luar layar (di bawah) */
+            animation: float 4s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh); /* Bergerak ke atas layar */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>hy hemtul</h1>
+        <p>pengecekan kepukian</p>
+        <div class="button-group">
+            <button class="button yes" onclick="yesClicked()">yh mi aph</button>
+            <button class="button no" onclick="noClicked()">ap puqi</button>
+        </div>
+        <div id="response" class="response"></div>
+    </div>
+
+    <script>
+        // Prevent default touch behaviors
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // Disable double tap and pinch zoom
+        document.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+        });
+
+        function yesClicked() {
+            document.getElementById('response').innerHTML = 'lu puqi bgt tul';
+            releaseEmojis();
+        }
+
+        function noClicked() {
+            document.getElementById('response').innerHTML = 'gasido njir mlz';
+            releaseEmojis();
+        }
+
+        function releaseEmojis() {
+            for (let i = 0; i < 50; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('emoji');
+                emoji.style.left = Math.random() * 100 + 'vw';
+                emoji.style.animationDelay = Math.random() * 2 + 's';
+                emoji.innerHTML = '🙏';
+                document.body.appendChild(emoji);
+
+                emoji.addEventListener('animationend', () => {
+                    emoji.remove();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
